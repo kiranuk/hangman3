@@ -7,5 +7,6 @@ import hangman
 # 3. Secret word should not be a proper noun
 
 def test_secret_word_6_letters():
-    assert len(hangman.get_secret_word()) >= 6
+    assert all(hangman.get_secret_word("./test_data/1.words") == "policeman" for _ in range(100))
+
     
