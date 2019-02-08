@@ -9,4 +9,7 @@ import hangman
 def test_secret_word_6_letters():
     assert all(hangman.get_secret_word("./test_data/1.words") == "policeman" for _ in range(100))
 
+def test_secret_word_no_punctuation():
+    assert all(hangman.get_secret_word("./test_data/2.words") == "fireman" for _ in range(100))
+
     
