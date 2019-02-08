@@ -12,7 +12,7 @@ def test_secret_word_6_letters():
 def test_secret_word_no_punctuation():
     assert all(hangman.get_secret_word("./test_data/2.words") == "fireman" for _ in range(100))
 
-def test_secret_word_no_punctuation():
+def test_secret_word_no_proper_nouns():
     assert all(hangman.get_secret_word("./test_data/3.words") == "policeman" for _ in range(100))
 
     
