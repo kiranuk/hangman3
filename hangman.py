@@ -16,5 +16,6 @@ def get_secret_word(word_file="/usr/share/dict/words"):
             good_words.append(i)
     return random.choice(good_words)
 def get_guess_word(s):
-    n = len(s)  
-    print("*"*n)
+    n = len(s)
+    l = "*"*n
+    return l
