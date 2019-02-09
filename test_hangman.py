@@ -19,5 +19,7 @@ def test_guess_word():
     assert (hangman.get_guess_word("elephant") == "********")
 
 def test_tries_left():
-    assert (hangman.get_tries_left("e**p**") == "False:9 tries left" for _ in range(10))  
+    assert (hangman.get_tries_left(10) == "9 tries left" for _ in range(10))
+
+ 
     
