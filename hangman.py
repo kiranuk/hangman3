@@ -19,3 +19,12 @@ def get_guess_word(s):
     n = len(s)
     l = "*"*n
     return l
+
+def get_tries_left(n=10):
+    for i in range(10,-1,-1):
+        if i == 0:
+            print("Zero chances left, Exit!!")
+        elif i > 0:
+            l = i - 1
+            print("%l chances left")
+

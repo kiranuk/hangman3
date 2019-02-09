@@ -17,4 +17,7 @@ def test_secret_word_no_proper_nouns():
 
 def test_guess_word():
     assert (hangman.get_guess_word("elephant") == "********")
+
+def test_tries_left():
+    assert (hangman.get_tries_left("e**p**") == "False:9 tries left" for _ in range(10))  
     
