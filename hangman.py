@@ -28,7 +28,7 @@ def get_tries_left(n=10):
             i = i - 1
             print("%l chances left")
 
-def get_wrong_guess_word(n=10, word1, word2):
+def get_wrong_guess_word(word1, word2):
     for i in range(10):
         if word1 != word2:
             print("%i guess so far")
