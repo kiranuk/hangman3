@@ -1,8 +1,0 @@
-[
-  "test_hangman.py::test_secret_word_6_letters",
-  "test_hangman.py::test_secret_word_no_punctuation",
-  "test_hangman.py::test_secret_word_no_proper_nouns",
-  "test_hangman.py::test_guess_word",
-  "test_hangman.py::test_tries_left",
-  "test_hangman.py::test_wrong_guess_word"
-]
