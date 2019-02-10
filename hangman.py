@@ -34,4 +34,20 @@ def get_wrong_guess_word(word1, word2):
             print("%i guess so far")
         else:
             break
+def get_ask_letter(s, get_guess_word):
+    w = " "
+    s = input("Guess a letter: ")
+    for i in get_guess_word:
+        if i == s:
+            w.append(s)
+            print(w)
+        else:
+            continue
+
+print("WELCOME!! TO HANGMAN GAME")
+
+while True:
+    l = get_secret_word()
+    l1 =get_guess_word(l)
+
 
