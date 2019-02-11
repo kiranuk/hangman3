@@ -15,39 +15,62 @@ def get_secret_word(word_file="/usr/share/dict/words"):
                 continue
             good_words.append(i)
     return random.choice(good_words)
+
 def get_guess_word(s):
     n = len(s)
     l = "*"*n
     return l
 
 def get_tries_left(n=10):
-    for i in range(10,-1,-1):
-        if i == 0:
-            print("Zero chances left, Exit!!")
-        elif i > 0:
-            i = i - 1
-            print("%l chances left")
-
-def get_wrong_guess_word(word1, word2):
-    for i in range(10):
-        if word1 != word2:
-            print("%i guess so far")
+    while(n >= 0):
+        if n == 0:
+            l = print("too bad try next time!!")
         else:
-            break
-def get_ask_letter(s, get_guess_word):
-    w = " "
-    s = input("Guess a letter: ")
-    for i in get_guess_word:
-        if i == s:
-            w.append(s)
-            print(w)
-        else:
-            continue
+            l = print("chances left {}".format(n))
+            n 1= n - 1
+        return l
 
-print("WELCOME!! TO HANGMAN GAME")
+def get_wrong_guess_word():
+    guess_word = []
+    letter = get_ask_to_type()
+    if letter not in get_secret_word():
+        print('\nGuess so far {}'.format(letter))
+        m.append(letter)
+    return m
 
+def get_ask_to_type():
+    w = []
+    s = input("Enter a letter: ")
+    check1 = s.isalpha()
+    check2 = s.islower()
+    if (check1 == True and check2 == True):
+        for i in get_secret_word():
+            if s == i:
+                w.append(s)
+                print(w)
+                continue
+            else:
+                continue
+if '__name__' == '__main__':
+    main()
+
+print("Welcome to hangman game")
 while True:
-    l = get_secret_word()
-    l1 =get_guess_word(l)
+    play_game = input('ready to play? y or n')
+    if play_game == 'y':
+        game_on = True
+    else:
+        game_on = False
+    while game_on:
+        l = get_secret_word(word_file="/usr/share/dict/words")
+        l1 = get_guess_word(l)
+        print(l1)
+        l2 = get_ask_to_type()
+        get_wrong_guess_word()
+        get_tries_left(n=10)
+    
 
 
+
+
+ 
