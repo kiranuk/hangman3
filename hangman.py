@@ -60,14 +60,12 @@ if '__name__' == '__main__':
 print("Welcome to hangman game")
 word = get_secret_word(word_file="/usr/share/dict/words")
 while True:
-    play_game = input('ready to play? y or n')
+    play_game = input('ready to play? y or n: ')
     if play_game == 'y':
         game_on = True
     else:
         game_on = False
     while game_on:        
-            l = word
-            print(l)
             l1 = mask_word(word)
             print(l1)
             tries_left(10)
