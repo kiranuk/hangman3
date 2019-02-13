@@ -16,12 +16,12 @@ def test_secret_word_no_proper_nouns():
     assert all(hangman.get_secret_word("./test_data/3.words") == "policeman" for _ in range(100))
 
 def test_guess_word():
-    assert (hangman.get_guess_word("elephant") == "********")
+    assert (hangman.guess_word("elephant") == "********")
 
 def test_tries_left():
-    assert (hangman.get_tries_left(10) == "9 tries left" for _ in range(10))
+    assert (hangman.tries_left(10) == "9 tries left" for _ in range(10))
 
 def test_wrong_guess_word():
-    assert (hangman.get_wrong_guess_word(s) == "Guess so far q,w,e,r" for _ in range(10))
+    assert (hangman.wrong_guess_word(s) == "Guess so far q,w,e,r" for _ in range(10))
 
 

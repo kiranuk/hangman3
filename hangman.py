@@ -16,58 +16,68 @@ def get_secret_word(word_file="/usr/share/dict/words"):
             good_words.append(i)
     return random.choice(good_words)
 
-def get_guess_word(s):
+def mask_word(s):
     n = len(s)
     l = "*"*n
     return l
 
-def get_tries_left(n=10):
+def tries_left(n=10):
     while(n >= 0):
         if n == 0:
             l = print("too bad try next time!!")
         else:
             l = print("chances left {}".format(n))
-            n 1= n - 1
+        n = n - 1
         return l
 
-def get_wrong_guess_word():
+def wrong_guess_word(word, s):
     guess_word = []
-    letter = get_ask_to_type()
-    if letter not in get_secret_word():
-        print('\nGuess so far {}'.format(letter))
-        m.append(letter)
-    return m
+    if s not in word:
+        print('\nGuess so far {}'.format(s))
+        guess_word.append(s)
+    return guess_word
 
-def get_ask_to_type():
-    w = []
+def ask_to_type(word):
+    match_letter = []
     s = input("Enter a letter: ")
     check1 = s.isalpha()
     check2 = s.islower()
     if (check1 == True and check2 == True):
-        for i in get_secret_word():
+        for i in word:
             if s == i:
-                w.append(s)
-                print(w)
+                match_letter.append(s)
+                print(match_letter)
                 continue
             else:
+                wrong_guess_word(word,s)
                 continue
+    else:
+        print("please enter a alphabetic in lower ")
+        return s
 if '__name__' == '__main__':
     main()
 
 print("Welcome to hangman game")
+word = get_secret_word(word_file="/usr/share/dict/words")
 while True:
     play_game = input('ready to play? y or n')
     if play_game == 'y':
         game_on = True
     else:
         game_on = False
-    while game_on:
-        l = get_secret_word(word_file="/usr/share/dict/words")
-        l1 = get_guess_word(l)
-        print(l1)
-        l2 = get_ask_to_type()
-        get_wrong_guess_word()
-        get_tries_left(n=10)
+    while game_on:        
+            l = word
+            print(l)
+            l1 = mask_word(word)
+            print(l1)
+            tries_left(10)
+            ask_to_type(word)
+            
+
+            
+        
+
+
     
 
 
