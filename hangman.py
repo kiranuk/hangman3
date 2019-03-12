@@ -16,7 +16,7 @@ def get_secret_word(word_file="/usr/share/dict/words"):
             good_words.append(i)
     return random.choice(good_words)
 
-def mask_word(s):
+def mask_word(word, guesses):
     ret = []
     for i in word:
         if i in guesses:
@@ -36,52 +36,27 @@ def status(word, guesses, turns):
 def guess_word(word, guesses, letter, turns):
     if letter not in word:
         guesses.append(letter)
-        return turns -1, False
+        return turns - 1, False
     else:
         return turns, False
 
-def ask_to_type(word):
-    match_letter = []
-    s = input("Enter a letter: ")
-    check1 = s.isalpha()
-    check2 = s.islower()
-    if (check1 == True and check2 == True):
-        for i in word:
-            if s == i:
-                match_letter.append(s)
-                print(match_letter)
-                continue
-            else:
-                wrong_guess_word(word,s)
-                continue
-    else:
-        print("please enter a alphabetic in lower ")
-        return s
-if '__name__' == '__main__':
+def main():
+    print("Welcome to Hangman game!")
+    word = get_secret_word(word_file="/usr/share/dict/words")
+    guesses = []
+    global turns
+    while True:
+        mask = mask_word(word, guesses)
+        print(mask)
+        letter = input("Enter a letter: ")
+        turns, success = guess_word(word, guesses, letter, turns)
+        print(status(word, guesses, turns))
+        if turns == 0:
+            print(f"sorry!! The secret word was {word}")
+            break
+        if success:
+            print("You did it!!")
+            break
+
+if __name__ == '__main__':
     main()
-
-print("Welcome to hangman game")
-word = get_secret_word(word_file="/usr/share/dict/words")
-while True:
-    play_game = input('ready to play? y or n: ')
-    if play_game == 'y':
-        game_on = True
-    else:
-        game_on = False
-    while game_on:        
-            l1 = mask_word(word)
-            print(l1)
-            tries_left(10)
-            ask_to_type(word)
-            
-
-            
-        
-
-
-    
-
-
-
-
- 
