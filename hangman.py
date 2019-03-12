@@ -25,14 +25,13 @@ def mask_word(s):
             ret.append('*')
     return ' '.join(ret)
 
-def tries_left(n=10):
-    while(n >= 0):
-        if n == 0:
-            l = print("too bad try next time!!")
-        else:
-            l = print("chances left {}".format(n))
-        n = n - 1
-        return l
+def status(word, guesses, turns):
+    return """Secret word : {}
+    Guessed letters : {}
+    turns : {}
+    """.format(mask_word(word, guesses),
+            ' '.join(sorted(guesses)),
+            turns)
 
 def wrong_guess_word(word, s):
     guess_word = []
