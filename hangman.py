@@ -23,7 +23,7 @@ def mask_word(word, guesses):
             ret.append(i)
         else:
             ret.append('*')
-    return ' '.join(ret)
+    return ''.join(ret)
 
 def status(word, guesses, turns):
     return """Secret word : {}
@@ -52,7 +52,7 @@ def main():
         turns, success = guess_word(word, guesses, letter, turns)
         print(status(word, guesses, turns))
         if turns == 0:
-            print(f"sorry!! The secret word was {word}")
+            print("sorry!! The secret word was {}".format(word))
             break
         if success:
             print("You did it!!")

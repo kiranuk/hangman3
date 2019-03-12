@@ -18,13 +18,18 @@ def test_secret_word_no_proper_nouns():
 def test_mask_word():
     assert hangman.mask_word("elephant", []) == "********"
     assert hangman.mask_word("elephant",['e']) == "e*e*****"
+
+def test_status():
+    actual_status = hangman.status('elephant', ['x', 'l', 'e'], 7)
+    expected_status = """Secret word : ele*****
+    guessed letters : e l x
+    turns : 7
+    """
+
 def test_guess_word():
-    assert (hangman.guess_word("elephant") == "********")
-
-def test_tries_left():
-    assert (hangman.tries_left(10) == "9 tries left" for _ in range(10))
-
-def test_wrong_guess_word():
-    assert (hangman.wrong_guess_word(s) == "Guess so far q,w,e,r" for _ in range(10))
-
+    guesses = ['x', 'l', 'e']
+    ret, success = hangman.guess_word('elephant', guesses, 'p', 8)
+    assert ret == 7
+    assert guesses == ['x', 'l', 'e', 'p']
+    assert success == False
 
