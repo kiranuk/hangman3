@@ -17,9 +17,13 @@ def get_secret_word(word_file="/usr/share/dict/words"):
     return random.choice(good_words)
 
 def mask_word(s):
-    n = len(s)
-    l = "*"*n
-    return l
+    ret = []
+    for i in word:
+        if i in guesses:
+            ret.append(i)
+        else:
+            ret.append('*')
+    return ' '.join(ret)
 
 def tries_left(n=10):
     while(n >= 0):
