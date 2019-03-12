@@ -33,12 +33,12 @@ def status(word, guesses, turns):
             ' '.join(sorted(guesses)),
             turns)
 
-def wrong_guess_word(word, s):
-    guess_word = []
-    if s not in word:
-        print('\nGuess so far {}'.format(s))
-        guess_word.append(s)
-    return guess_word
+def guess_word(word, guesses, letter, turns):
+    if letter not in word:
+        guesses.append(letter)
+        return turns -1, False
+    else:
+        return turns, False
 
 def ask_to_type(word):
     match_letter = []
