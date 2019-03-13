@@ -41,13 +41,9 @@ def guess_word(secret_word, guesses, letter, turns):
         guesses.append(letter)
         return turns - 1
 
-#def success(mask, letter):
- #   if "*" not in mask:
-  #      print("You did it!!")
-        #break
-
 def main():
     print("Welcome to Hangman game!")
+    success_y = success(mask, letter)
     secret_word = get_secret_word(word_file="/usr/share/dict/words")
     guesses = []
     global turns
@@ -59,7 +55,6 @@ def main():
         letter = input("Enter a letter: ")
         turns = guess_word(secret_word, guesses, letter, turns)
         print(status(secret_word, guesses, turns))
-
         if turns == 0:
             print("sorry!! The secret word was {}".format(secret_word))
             break
