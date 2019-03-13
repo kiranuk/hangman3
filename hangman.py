@@ -59,7 +59,7 @@ def main():
         letter = input("Enter a letter: ")
         turns = guess_word(secret_word, guesses, letter, turns)
         print(status(secret_word, guesses, turns))
-        success(mask,letter)
+
         if turns == 0:
             print("sorry!! The secret word was {}".format(secret_word))
             break
