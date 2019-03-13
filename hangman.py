@@ -36,10 +36,15 @@ def status(secret_word, guesses, turns):
 
 def guess_word(secret_word, guesses, letter, turns):
     if letter in guesses:
-        return turns, False
+        return turns
     else:
         guesses.append(letter)
-        return turns - 1, False
+        return turns - 1
+
+#def success(mask, letter):
+ #   if "*" not in mask:
+  #      print("You did it!!")
+        #break
 
 def main():
     print("Welcome to Hangman game!")
@@ -52,14 +57,16 @@ def main():
         print(secret_word)
         print(mask)
         letter = input("Enter a letter: ")
-        turns, success = guess_word(secret_word, guesses, letter, turns)
+        turns = guess_word(secret_word, guesses, letter, turns)
         print(status(secret_word, guesses, turns))
+        success(mask,letter)
         if turns == 0:
             print("sorry!! The secret word was {}".format(secret_word))
             break
-        if success:
-            print("You did it!!")
+        if "*" not in mask:
+            print("You did it")
             break
+            
 
 if __name__ == '__main__':
     main()
