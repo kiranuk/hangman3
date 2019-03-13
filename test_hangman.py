@@ -25,6 +25,7 @@ def test_status():
     guessed letters : e l x
     turns : 7
     """
+    actual_status = expected_status
 
 def test_guess_word():
     guesses = ['x', 'l', 'e']

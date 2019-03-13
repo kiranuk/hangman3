@@ -25,34 +25,37 @@ def mask_word(word, guesses):
             ret.append('*')
     return ''.join(ret)
 
-def status(word, guesses, turns):
-    return """Secret word : {}
+def status(secret_word, guesses, turns):
+    return """
+    Secret word : {}
     Guessed letters : {}
     turns : {}
-    """.format(mask_word(word, guesses),
+    """.format(mask_word(secret_word, guesses),
             ' '.join(sorted(guesses)),
             turns)
 
-def guess_word(word, guesses, letter, turns):
-    if letter not in word:
+def guess_word(secret_word, guesses, letter, turns):
+    if letter in guesses:
+        return turns, False
+    else:
         guesses.append(letter)
         return turns - 1, False
-    else:
-        return turns, False
 
 def main():
     print("Welcome to Hangman game!")
-    word = get_secret_word(word_file="/usr/share/dict/words")
+    secret_word = get_secret_word(word_file="/usr/share/dict/words")
     guesses = []
     global turns
+    turns = 10
     while True:
-        mask = mask_word(word, guesses)
+        mask = mask_word(secret_word, guesses)
+        print(secret_word)
         print(mask)
         letter = input("Enter a letter: ")
-        turns, success = guess_word(word, guesses, letter, turns)
-        print(status(word, guesses, turns))
+        turns, success = guess_word(secret_word, guesses, letter, turns)
+        print(status(secret_word, guesses, turns))
         if turns == 0:
-            print("sorry!! The secret word was {}".format(word))
+            print("sorry!! The secret word was {}".format(secret_word))
             break
         if success:
             print("You did it!!")
