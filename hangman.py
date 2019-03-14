@@ -31,13 +31,15 @@ def status(secret_word, guesses, turns):
     Guessed letters : {}
     turns : {}
     """.format(mask_word(secret_word, guesses),
-            ' '.join(sorted(guesses)),
+            ''.join(sorted(guesses)),
             turns)
 
 def guess_word(guesses, letter, turns):
     if letter not in guesses:
         guesses.append(letter)
         return turns - 1
+    elif letter in secret_word:
+        return turns
     else:
         return turns
 
@@ -50,16 +52,15 @@ def main():
         mask = mask_word(secret_word, guesses)
         print(secret_word)
         print(mask)
+        if "*" not in mask:
+            print("You did it")
+            break
         letter = input("Enter a letter: ")
         turns = guess_word(guesses, letter, turns)
         print(status(secret_word, guesses, turns))
         if turns == 0:
             print("sorry!! The secret word was {}".format(secret_word))
-            break
-        if "*" not in mask:
-            print("You did it")
-            break
-            
+            break          
 
 if __name__ == '__main__':
     main()
