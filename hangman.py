@@ -16,7 +16,7 @@ def get_secret_word(word_file="/usr/share/dict/words"):
             good_words.append(i)
     return random.choice(good_words)
 
-def mask_word(word, guesses,turns):
+def mask_word(word, guesses):
     ret = []
     for i in word:
         if i in guesses:
@@ -30,7 +30,7 @@ def status(secret_word, guesses, turns):
     Secret word : {}
     Guessed letters : {}
     turns : {}
-    """.format(mask_word(secret_word, guesses, turns),
+    """.format(mask_word(secret_word, guesses),
             ' '.join(sorted(guesses)),
             turns)
 
@@ -51,7 +51,7 @@ def main():
     guesses = []
     turns = 10
     while True:
-        mask = mask_word(secret_word, guesses, turns)
+        mask = mask_word(secret_word, guesses)
         print(secret_word)
         print(mask)
         if "*" not in mask:
