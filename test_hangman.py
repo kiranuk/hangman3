@@ -30,7 +30,6 @@ def test_status():
 def test_guess_word():
     guesses = ['x', 'l', 'e']
     ret = hangman.guess_word('elephant', guesses, 'p', 8)
-    assert ret == 7
+    assert ret == 8
     assert guesses == ['x', 'l', 'e', 'p']
-    #assert success == False
 
