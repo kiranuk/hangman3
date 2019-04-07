@@ -1,6 +1,7 @@
 # hangman.py
 
 import random
+import sys
 
 
 def get_secret_word(word_file="/usr/share/dict/words"):
@@ -39,32 +40,39 @@ def status(secret_word, guesses, turns):
 
 
 def guess_word(secret_word, guesses, letter, turns):
-    guesses.append(letter)
-    if letter in guesses:
-        return turns
-    else:
+    if letter not in guesses:
         guesses.append(letter)
+    if letter not in secret_word:
         return turns - 1
+    else:
+        return turns
+
+
+def winning_statement(mask):
+    if "*" not in mask:
+        print("\n\U0001F44d\U0001f44D You did it")
+        sys.exit()
+
+
+def losing_statement(secret_word, turns):
+    if turns == 0:
+        print("sorry!! The secret word was {}".format(secret_word))
+        sys.exit()
 
 
 def main():
     print("Welcome to Hangman game!")
     secret_word = get_secret_word(word_file="/usr/share/dict/words")
     guesses = []
+    print(mask_word(secret_word, guesses))
     turns = 10
     while True:
         mask = mask_word(secret_word, guesses)
-        print(secret_word)
-        print(mask)
-        if "*" not in mask:
-            print("\n\U0001F44d\U0001f44D You did it")
-            break
+        winning_statement(mask)
         letter = input("Enter a letter: ")
         turns = guess_word(secret_word, guesses, letter, turns)
         print(status(secret_word, guesses, turns))
-        if turns == 0:
-            print("sorry!! The secret word was {}".format(secret_word))
-            break
+        losing_statement(secret_word, turns)
 
 
 if __name__ == '__main__':
