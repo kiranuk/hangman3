@@ -1,13 +1,14 @@
 # hangman.py
-
+"import random to get random word from word file"
 import random
-import sys
+
 
 
 def get_secret_word(word_file="/usr/share/dict/words"):
-    with open(word_file) as f:
+    "Take words randomly"
+    with open(word_file) as file1:
         good_words = []
-        for i in f:
+        for i in file1:
             i = i.strip()
             if len(i) <= 6:     # No short words
                 continue
@@ -20,6 +21,7 @@ def get_secret_word(word_file="/usr/share/dict/words"):
 
 
 def mask_word(word, guesses):
+    "Mask the word with * char"
     ret = []
     for i in word:
         if i in guesses:
@@ -30,6 +32,7 @@ def mask_word(word, guesses):
 
 
 def status(secret_word, guesses, turns):
+    "Prints the current status"
     return """
     Secret word : {}
     Guessed letters : {}
@@ -40,6 +43,7 @@ def status(secret_word, guesses, turns):
 
 
 def guess_word(secret_word, guesses, letter, turns):
+    "Returns the remaining turns"
     if letter not in guesses:
         guesses.append(letter)
     else:
@@ -50,7 +54,8 @@ def guess_word(secret_word, guesses, letter, turns):
         return turns
 
 
-def winning_statement(mask, secret_word, turns):
+def final_status(mask, secret_word, turns):
+    "To give final status lie win/lose statement"
     if "*" not in mask:
         print("\n\U0001F44d\U0001f44D You did it")
         return True
@@ -68,14 +73,15 @@ def main():
     secret_word = get_secret_word(word_file="/usr/share/dict/words")
     guesses = []
     print(mask_word(secret_word, guesses))
+    print(secret_word)
     turns = 10
     while True:
         mask = mask_word(secret_word, guesses)
+        if final_status(mask, secret_word, turns):
+            break
         letter = input("Enter a letter: ")
         turns = guess_word(secret_word, guesses, letter, turns)
         print(status(secret_word, guesses, turns))
-        if winning_statement(mask, secret_word, turns):
-            break
 
 
 if __name__ == '__main__':
