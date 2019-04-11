@@ -3,3 +3,7 @@ __pycache__/*
 .#*
 .coverage
 htmlcov/*
+hangman.py
+requirements.txt
+spec.txt
+test_hangman.py

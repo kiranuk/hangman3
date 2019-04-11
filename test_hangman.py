@@ -37,5 +37,6 @@ def test_guess_word_repetitons():
     ret = hangman.guess_word('elephant', guesses, 'p', 8)
     assert ret == 8
     assert guesses == ['p']
-
-
+def test_winning_statement():
+    assert hangman.winning_statement("elephant", "elephant", 8) == True
+    assert hangman.winning_statement("elep****", "elephant", 0) == True

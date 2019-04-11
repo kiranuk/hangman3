@@ -42,22 +42,25 @@ def status(secret_word, guesses, turns):
 def guess_word(secret_word, guesses, letter, turns):
     if letter not in guesses:
         guesses.append(letter)
+    else:
+        return turns
     if letter not in secret_word:
         return turns - 1
     else:
         return turns
 
 
-def winning_statement(mask):
+def winning_statement(mask, secret_word, turns):
     if "*" not in mask:
         print("\n\U0001F44d\U0001f44D You did it")
-        sys.exit()
-
-
-def losing_statement(secret_word, turns):
+        return True
     if turns == 0:
         print("sorry!! The secret word was {}".format(secret_word))
-        sys.exit()
+        return True
+
+
+
+#def losing_statement(secret_word, turns):
 
 
 def main():
@@ -68,11 +71,11 @@ def main():
     turns = 10
     while True:
         mask = mask_word(secret_word, guesses)
-        winning_statement(mask)
         letter = input("Enter a letter: ")
         turns = guess_word(secret_word, guesses, letter, turns)
         print(status(secret_word, guesses, turns))
-        losing_statement(secret_word, turns)
+        if winning_statement(mask, secret_word, turns):
+            break
 
 
 if __name__ == '__main__':
