@@ -60,7 +60,7 @@ def winning_statement(mask, secret_word, turns):
 
 
 
-#def losing_statement(secret_word, turns):
+
 
 
 def main():
