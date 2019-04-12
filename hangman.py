@@ -55,7 +55,7 @@ def guess_word(secret_word, guesses, letter, turns):
 
 
 def final_status(mask, secret_word, turns):
-    "To give final status lie win/lose statement"
+    "To give final status like win/lose statement"
     if "*" not in mask:
         print("\n\U0001F44d\U0001f44D You did it")
         return True
